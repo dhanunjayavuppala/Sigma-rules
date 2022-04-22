@@ -1,0 +1,22 @@
+title: VMware Workspace ONE Access CVE-2022-22954
+status: experimental
+description: Server-side Template Injection Remote Code Execution Vulnerability in the VMware Workspace One.
+author: Dhanunjaya.v
+date: 2022/04/22
+references:
+    - https://www.vmware.com/security/advisories/VMSA-2022-0011.html
+    - https://securityaffairs.co/wordpress/130188/hacking/vmware-workspace-one-access-flaw-attacks.html
+    - https://www.tenable.com/cve/CVE-2022-22954
+tags:
+    - attack.initial_access
+    - attack.t1190
+logsource:
+    category: webserver
+detection:
+    selection:
+        cs-method: 'GET'
+        c-uri|contains: '/catalog-portal/ui/oauth/verify?error='
+    condition: selection
+falsepositives:
+    - Vulnerability Scanning
+level: High
